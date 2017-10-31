@@ -2,17 +2,17 @@
 
 import jieba
 import logging
+import os
+
+if os.name != 'nt':
+    jieba.enable_parallel(8)
 
 def main():
-
     logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
-
-    # jieba custom setting.
-    jieba.set_dictionary('jieba_dict/dict.txt.big')
 
     # load stopwords set
     stopwordset = set()
-    with open('jieba_dict/stopwords.txt','r',encoding='utf-8') as sw:
+    with open('dict/stopwords.txt','r',encoding='utf-8') as sw:
         for line in sw:
             stopwordset.add(line.strip('\n'))
 
